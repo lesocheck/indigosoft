@@ -1,0 +1,26 @@
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &[data-role='admin'] {
+    background: var(--color-role-admin-bg);
+    color: var(--color-role-admin);
+  }
+  &[data-role='manager'] {
+    background: var(--color-role-manager-bg);
+    color: var(--color-role-manager);
+  }
+  &[data-role='developer'] {
+    background: var(--color-role-developer-bg);
+    color: var(--color-role-developer);
+  }
+  &[data-role='designer'] {
+    background: var(--color-role-designer-bg);
+    color: var(--color-role-designer);
+  }
+}

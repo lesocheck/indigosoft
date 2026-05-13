@@ -1,0 +1,22 @@
+<article class="card">
+  <div class="card__header">
+    <div class="card__avatar" aria-hidden="true">
+      {{ initials() }}
+    </div>
+    <div class="card__meta">
+      <h3 class="card__name">{{ user().name }}</h3>
+      <app-role-badge [role]="user().role" />
+    </div>
+  </div>
+  <dl class="card__details">
+    <div class="card__detail">
+      <dt>Возраст</dt>
+      <dd>{{ user().age }}</dd>
+    </div>
+    <div class="card__detail">
+      <dt>Email</dt>
+      <dd>{{ user().email }}</dd>
+    </div>
+  </dl>
+  <button class="card__edit-btn" type="button" (click)="edit.emit()">Редактировать</button>
+</article>

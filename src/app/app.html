@@ -1,0 +1,48 @@
+<div class="layout">
+  <header class="layout__header">
+    <div class="layout__header-inner">
+      <h1 class="layout__title">Управление пользователями</h1>
+      <p class="layout__subtitle">Список сотрудников компании</p>
+    </div>
+  </header>
+
+  <main class="layout__main">
+    @switch (loadState().status) {
+      @case ('loading') {
+        <div class="layout__loader" role="status" aria-live="polite">
+          <div class="spinner" aria-hidden="true"></div>
+          <p>Загрузка пользователей...</p>
+        </div>
+      }
+      @case ('error') {
+        <div class="layout__error" role="alert">
+          <p>Не удалось загрузить пользователей</p>
+          <button (click)="retry()">Повторить</button>
+        </div>
+      }
+      @case ('success') {
+        <app-user-list
+          [users]="filteredUsers()"
+          [activeRoleFilter]="roleFilter()"
+          [userCardTemplate]="cardTemplate"
+          (edit)="openEdit($event)"
+          (filterChange)="setRoleFilter($event)"
+        />
+      }
+    }
+  </main>
+
+  <app-user-edit [user]="selectedUser()" (save)="onSave($event)" (cancel)="onCancel()" />
+</div>
+
+<ng-template #cardTemplate let-user let-edit="edit">
+  <article class="custom-card">
+    <div class="custom-card__top">
+      <app-role-badge [role]="user.role" />
+      <span class="custom-card__age">{{ user.age }} лет</span>
+    </div>
+    <h3 class="custom-card__name">{{ user.name }}</h3>
+    <a class="custom-card__email" [href]="'mailto:' + user.email">{{ user.email }}</a>
+    <button class="custom-card__btn" type="button" (click)="edit(user)">Редактировать</button>
+  </article>
+</ng-template>

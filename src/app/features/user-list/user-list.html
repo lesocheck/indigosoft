@@ -1,0 +1,21 @@
+<ng-template #defaultCard let-user let-edit="edit">
+  <app-user-card [user]="user" (edit)="edit(user)" />
+</ng-template>
+
+<section class="list">
+  <app-user-list-filters
+    [value]="activeRoleFilter()"
+    (filterChange)="filterChange.emit($event)"
+  />
+
+  <div class="list__grid">
+    @for (user of users(); track user.id) {
+      <ng-container
+        [ngTemplateOutlet]="userCardTemplate ?? defaultCard"
+        [ngTemplateOutletContext]="{ $implicit: user, edit: onEdit }"
+      />
+    } @empty {
+      <p class="list__empty">Пользователи не найдены</p>
+    }
+  </div>
+</section>

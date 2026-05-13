@@ -1,0 +1,58 @@
+:root {
+  // Brand
+  --color-primary: #007a63;
+  --color-primary-hover: #006b57;
+  --color-on-primary: #ffffff;
+
+  // Surfaces
+  --color-surface: #ffffff;
+  --color-background: #f8fafc;
+
+  // Borders & text
+  --color-border: #e2e8f0;
+  --color-text: #1e293b;
+  --color-text-secondary: #64748b;
+
+  // Semantic
+  --color-error: #c0392b;
+  --color-overlay: rgba(0, 0, 0, 0.4);
+
+  // Shadows
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-card-sm: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-panel: -8px 0 32px rgba(0, 0, 0, 0.12);
+
+  // Role badges
+  --color-role-admin-bg: #fde8e8;
+  --color-role-admin: #c0392b;
+  --color-role-manager-bg: #fef3cd;
+  --color-role-manager: #92600a;
+  --color-role-developer-bg: #e0f2fe;
+  --color-role-developer: #0369a1;
+  --color-role-designer-bg: #f0fdf4;
+  --color-role-designer: #15803d;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-size: 16px;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}

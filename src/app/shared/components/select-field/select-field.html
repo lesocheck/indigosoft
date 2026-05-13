@@ -1,0 +1,20 @@
+<div class="field" [class.field--invalid]="control()?.touched && control()?.invalid">
+  @if (label()) {
+    <label [for]="id" class="field__label">{{ label() }}</label>
+  }
+  <select
+    [id]="id"
+    class="field__select"
+    [value]="value"
+    [disabled]="disabled"
+    (change)="onSelect($event)"
+    (blur)="onTouched()"
+  >
+    @for (opt of options(); track opt.value) {
+      <option [value]="opt.value" [selected]="opt.value === value">{{ opt.label }}</option>
+    }
+  </select>
+  @for (msg of activeErrors; track msg) {
+    <p class="field__error" role="alert">{{ msg }}</p>
+  }
+</div>

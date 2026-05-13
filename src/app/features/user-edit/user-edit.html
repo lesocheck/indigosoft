@@ -1,0 +1,58 @@
+<aside
+  class="sidebar"
+  [class.sidebar--open]="!!user()"
+  [attr.inert]="!user() ? '' : null"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="sidebar-title"
+>
+  <div class="sidebar__backdrop" (click)="cancel.emit()"></div>
+  <div class="sidebar__panel">
+    <header class="sidebar__header">
+      <h2 id="sidebar-title" class="sidebar__title">Редактирование пользователя</h2>
+      <button class="sidebar__close" type="button" (click)="cancel.emit()" aria-label="Закрыть">Х</button>
+    </header>
+
+    <form class="sidebar__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <app-input-field
+        label="Имя"
+        type="text"
+        placeholder="Введите имя"
+        formControlName="name"
+        [errorMessages]="{ required: 'Поле обязательно', minlength: 'Минимум 2 символа' }"
+      />
+
+      <app-input-field
+        label="Возраст"
+        type="number"
+        placeholder="Введите возраст"
+        formControlName="age"
+        [errorMessages]="{ required: 'Поле обязательно', min: 'Возраст от 1 года', max: 'Возраст до 120 лет' }"
+      />
+
+      <app-input-field
+        label="Email"
+        type="email"
+        placeholder="Введите email"
+        formControlName="email"
+        [errorMessages]="{ required: 'Поле обязательно', email: 'Некорректный email' }"
+      />
+
+      <app-select-field
+        label="Роль"
+        [options]="roleOptions"
+        formControlName="role"
+        [errorMessages]="{ required: 'Поле обязательно' }"
+      />
+
+      <div class="sidebar__actions">
+        <button class="btn btn--secondary" type="button" (click)="cancel.emit()">
+          Отмена
+        </button>
+        <button class="btn btn--primary" type="submit" [disabled]="form.invalid">
+          Сохранить
+        </button>
+      </div>
+    </form>
+  </div>
+</aside>
